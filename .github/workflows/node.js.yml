@@ -1,0 +1,34 @@
+name: Build and Publish
+
+on: push
+
+jobs:
+  buildAndPublish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    #- run: npm ci
+    - run: npm run build
+    #- run: npm test
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      with:
+        server: www419.your-server.de
+        username: nikitat_0
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+        port: 21 # todo replace with your web hosts ftps port
+        local-dir: ./dist/
+        server-dir: ./vue/
+
