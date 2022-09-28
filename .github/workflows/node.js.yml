@@ -27,5 +27,5 @@ jobs:
         protocol: ftps
         port: 21 # todo replace with your web hosts ftps port
         local-dir: ./dist/
-        server-dir: ./vue/
+        server-dir: ./
 
