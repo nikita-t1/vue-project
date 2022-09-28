@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import Calculator from './components/Calculator.vue';
-import GithubCard from './components/GithubCard.vue'
+import AboutMe from './components/AboutMe.vue'
+import TopBar from './components/TopBar.vue'
+import Footer from './components/Footer.vue'
+
 </script>
 
 <template>
-  <div>
-    <GithubCard />
-    <h1 class="text-3xl font-bold underline text-teal-500">
-      Hello world!
-    </h1>
-    <Calculator />
+  <div class="h-screen dark:bg-slate-800">
+    <TopBar />
+    <AboutMe />
+    <Footer />
   </div>
 </template>
