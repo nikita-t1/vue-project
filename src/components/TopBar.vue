@@ -16,16 +16,19 @@
                         <a href="#" class="font-bold block py-2 pr-4 pl-3 text-white rounded md:bg-transparent md:text-blue-500 md:p-0 dark:text-white" aria-current="page">Home</a>
                     </li>
                     <li>
-                        <a href="#" onclick="{{}}">About Me</a>
+                        <a href="#" @click="showAlert( $event)">About Me</a>
                     </li>
                     <li>
-                        <a href="#">Blog</a>
+                        <a href="#" @click="showAlert( $event)">Blog</a>
                     </li>
                     <li>
-                        <a href="#">Projects</a>
+                        <a href="#" @click="showAlert( $event)">Projects</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#" @click="showAlert( $event)">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#" @click="showAlert( $event)">Login</a>
                     </li>
                     <label for="toggle" class="inline-flex relative items-center cursor-pointer">
                     <input type="checkbox" id="toggle" class="sr-only peer">
@@ -40,9 +43,18 @@
 </template>
 
 
-<!-- <script script lang="ts">
+<script lang="ts">
+import { useNotImplementedAlertStore } from '../stores/notImplementedAlert'
+export default {
+    setup(){
+        function showAlert(event: any){                        
+            useNotImplementedAlertStore().showAlert(event.target.innerHTML)
+        }
+        return {showAlert}
+    }
+}
 
-</script> -->
+</script>
 
 <style scoped>
 
