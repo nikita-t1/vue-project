@@ -10,9 +10,10 @@ export const useNotImplementedAlertStore = defineStore('notImplementedAlert', {
       showAlert(alertText: string) {
         this.count++
         this.alertTextList.push(alertText)
+        
         setTimeout(() => {
           this.count--
-          this.alertTextList.pop()
+          this.alertTextList.shift()
         }, 10000)
       },
     },
