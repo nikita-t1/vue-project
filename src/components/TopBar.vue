@@ -31,7 +31,7 @@
                         <a href="#" @click="showAlert( $event)">Login</a>
                     </li>
                     <label for="toggle" class="inline-flex relative items-center cursor-pointer">
-                    <input type="checkbox" id="toggle" class="sr-only peer">
+                    <input type="checkbox" id="toggle" class="sr-only peer" @click="toogleDarkMode">
                     <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-slate-300 dark:peer-focus:ring-indigo-300 rounded-full peer dark:bg-slate-300 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white dark:bg-slate-500 after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-400 peer-checked:bg-indigo-600"></div>
                 </label>
                 </ul>
@@ -45,6 +45,8 @@
 
 <script lang="ts">
 import { useNotImplementedAlertStore } from '../stores/notImplementedAlert'
+import { useToogleDarkModeStore } from '../stores/toogleDarkModeStore'
+
 import { useRouter, useRoute } from 'vue-router'
 import { watch } from 'vue';
 
@@ -56,7 +58,11 @@ export default {
         function showAlert(event: any){                        
             useNotImplementedAlertStore().showAlert(event.target.innerHTML)
         }
-        return {showAlert}
+
+        function toogleDarkMode(){
+            useToogleDarkModeStore().toogle()
+        }
+        return {showAlert, toogleDarkMode}
     }
 }
 
