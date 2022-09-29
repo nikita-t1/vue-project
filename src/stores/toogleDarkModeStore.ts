@@ -12,9 +12,11 @@ export const useToogleDarkModeStore = defineStore('darkMode', {
         if(element != null){
             element.className = ""
             if(this.useDarkMode){
-                element.classList.add("dark")
+                element.classList.add("dark");
+                localStorage.setItem('color-theme', 'dark');
             } else {
-                element.classList.add("light")
+                element.classList.add("light");
+                localStorage.setItem('color-theme', 'light');
             }
         }
       },
