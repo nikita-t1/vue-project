@@ -12,8 +12,10 @@ store.$reset()
 <template>
   <div class="h-screen dark:bg-slate-800">
     <TopBar />
-    <AboutMe />
+    <router-view></router-view>
+
     <Footer />
+
     <div v-for="count in store.count" class="grid place-items-center">
       
       <div class=" absolute z-40  items-center mx-auto text-center p-4 max-w-xs outline-blue-500 outline-none outline-1 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" :style="{ 'bottom': (count *4) + 'rem' }" role="alert">
