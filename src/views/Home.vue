@@ -1,10 +1,10 @@
 <template>
     <div>
-        <ItsMe />
+        <ItsMe/>
     </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import ItsMe from '../components/ItsMe.vue';
 
