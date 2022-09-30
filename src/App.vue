@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AboutMe from './components/AboutMe.vue'
+import AboutMe from './components/ItsMe.vue'
 import TopBar from './components/TopBar.vue'
 import Footer from './components/Footer.vue'
 import { useNotImplementedAlertStore } from './stores/notImplementedAlert'
@@ -10,7 +10,7 @@ store.$reset()
 </script>
 
 <template>
-  <div class="h-screen dark:bg-slate-800">
+  <div class="h-screen dark:bg-dark bg-slate-50">
     <TopBar />
     <router-view></router-view>
 

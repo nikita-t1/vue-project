@@ -1,12 +1,12 @@
 <template>
     <div>
-        <AboutMe />
+        <ItsMe />
     </div>
 </template>
 
 <script setup lang="ts">
 
-import AboutMe from './../components/AboutMe.vue';
+import ItsMe from '../components/ItsMe.vue';
 
 </script>
 
