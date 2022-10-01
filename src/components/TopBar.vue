@@ -29,7 +29,7 @@
                         <button id="theme-toggle"
                                 class="self-center justify-center items-center inline-flex text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 "
                                 type="button"
-                                @click="toogleDarkMode">
+                                @click="toggleDark()">
                             <svg id="theme-toggle-dark-icon" :class="{hidden: useDarkMode}" fill="currentColor"
                                  height="16" viewBox="0 0 20 20"
                                  width="16" xmlns="http://www.w3.org/2000/svg">
@@ -62,13 +62,13 @@
                         <button id="theme-toggle"
                                 class="hidden md:block self-center text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 m-2"
                                 type="button"
-                                @click="toogleDarkMode">
-                            <svg id="theme-toggle-dark-icon" :class="{hidden: useDarkMode}" class="w-5 h-5"
+                                @click="toggleDark()">
+                            <svg id="theme-toggle-dark-icon" :class="{hidden: isDark}" class="w-5 h-5"
                                  fill="currentColor"
                                  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                             </svg>
-                            <svg id="theme-toggle-light-icon" :class="{hidden: !useDarkMode}" class=" w-5 h-5"
+                            <svg id="theme-toggle-light-icon" :class="{hidden: !isDark}" class=" w-5 h-5"
                                  fill="currentColor"
                                  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -89,36 +89,18 @@
 
 <script lang="ts">
 import {useNotImplementedAlertStore} from '../stores/notImplementedAlert'
-import {useToogleDarkModeStore} from '../stores/toogleDarkModeStore'
-
-import {useRouter, useRoute} from 'vue-router'
-import {onMounted, watch, ref} from 'vue';
+import { useDark, useToggle } from '@vueuse/core'
 
 export default {
     setup() {
-        const router = useRouter()
-        const route = useRoute()
-        var useDarkMode = ref(false)
-
-        onMounted(() => {
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                useDarkMode.value = true;
-            } else {
-                useDarkMode.value = false;
-            }
-            useToogleDarkModeStore().useDarkMode = useDarkMode.value
-        })
+        const isDark = useDark()
+        const toggleDark = useToggle(isDark)
 
         function showAlert(event: any) {
             useNotImplementedAlertStore().showAlert(event.target.innerHTML)
         }
 
-        function toogleDarkMode() {
-            useDarkMode.value = !useDarkMode.value
-            useToogleDarkModeStore().toogle()
-        }
-
-        return {showAlert, toogleDarkMode, useDarkMode}
+        return {showAlert, isDark, toggleDark}
     }
 }
 
