@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import AboutMe from './components/ItsMe.vue'
 import TopBar from './components/TopBar.vue'
 import Footer from './components/Footer.vue'
 import {useNotImplementedAlertStore} from './stores/notImplementedAlert'
@@ -10,10 +9,9 @@ store.$reset()
 </script>
 
 <template>
-    <div class="h-screen dark:bg-dark bg-slate-50">
+    <div class="h-screen dark:bg-dark bg-slate-50 flex flex-col">
         <TopBar/>
-        <router-view></router-view>
-
+        <router-view class="h-full flex"></router-view>
         <Footer/>
 
         <div v-for="count in store.count" class="grid place-items-center">

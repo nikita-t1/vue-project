@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="flex flex-row justify-center py-20 h-max self-center items-center align-middle">
+    <div class="flex flex-col justify-center items-center">
+        <div class="flex flex-row">
             <h1>4</h1>
             <h1>0</h1>
             <h1>4</h1>

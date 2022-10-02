@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ItsMe/>
+        <ItsMe class="w-full"/>
     </div>
 </template>
 

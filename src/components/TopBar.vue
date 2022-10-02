@@ -4,8 +4,9 @@
             class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-slate-50 text-sm py-2 md:py-0 dark:bg-dark">
             <nav aria-label="Global" class="container w-full mx-auto px-4 md:flex md:items-center md:justify-between">
                 <div class="flex items-center justify-between">
-                    <a class="flex-none text-xl font-semibold dark:text-white text-blue-500"
-                       href="#">nikitatarasov.dev</a>
+
+                    <router-link class="flex-none text-xl font-semibold dark:text-white text-blue-500" to="/">nikitatarasov.dev</router-link>
+
                     <div class="md:hidden">
                         <button aria-controls="navbar-collapse-with-animation"
                                 aria-label="Toggle navigation"
@@ -30,12 +31,12 @@
                                 class="self-center justify-center items-center inline-flex text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 "
                                 type="button"
                                 @click="toggleDark()">
-                            <svg id="theme-toggle-dark-icon" :class="{hidden: useDarkMode}" fill="currentColor"
+                            <svg id="theme-toggle-dark-icon" :class="{hidden: isDark}" fill="currentColor"
                                  height="16" viewBox="0 0 20 20"
                                  width="16" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                             </svg>
-                            <svg id="theme-toggle-light-icon" :class="{hidden: !useDarkMode}" fill="currentColor"
+                            <svg id="theme-toggle-light-icon" :class="{hidden: !isDark}" fill="currentColor"
                                  height="16"
                                  viewBox="0 0 20 20"
                                  width="16" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +58,9 @@
                         <a class="navElement" href="#" @click="showAlert( $event)">Blog</a>
                         <a class="navElement" href="#" @click="showAlert( $event)">Projects</a>
                         <a class="navElement" href="#" @click="showAlert( $event)">Contact</a>
-                        <a class="navElement" href="#" @click="showAlert( $event)">Login</a>
+
+                        <router-link class="navElement" to="/profile" v-if="isLoggedIn">Profile</router-link>
+                        <router-link class="navElement" to="/login" v-else>Login</router-link>
 
                         <button id="theme-toggle"
                                 class="hidden md:block self-center text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 m-2"
@@ -90,9 +93,11 @@
 <script lang="ts">
 import {useNotImplementedAlertStore} from '../stores/notImplementedAlert'
 import { useDark, useToggle } from '@vueuse/core'
+import {supabase} from "../supabase";
 
 export default {
     setup() {
+        const isLoggedIn = supabase.auth.user() != null
         const isDark = useDark()
         const toggleDark = useToggle(isDark)
 
@@ -100,7 +105,7 @@ export default {
             useNotImplementedAlertStore().showAlert(event.target.innerHTML)
         }
 
-        return {showAlert, isDark, toggleDark}
+        return {showAlert, isDark, toggleDark, isLoggedIn}
     }
 }
 
