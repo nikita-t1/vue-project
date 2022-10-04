@@ -6,6 +6,8 @@ import PageNotFound from './views/PageNotFound.vue'
 import Auth from "./views/Auth.vue"
 import Profile from "./views/Profile.vue"
 
+import * as pages from '~pages'
+
 const routes = [
     {
         path: "/",
@@ -37,6 +39,10 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes
+    routes: [
+        ...routes,
+        ...pages.default
+    ]
 })
 
 export default router

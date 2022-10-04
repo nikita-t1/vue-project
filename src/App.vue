@@ -11,7 +11,7 @@ store.$reset()
 <template>
     <div class="h-screen dark:bg-dark bg-slate-50 flex flex-col">
         <TopBar/>
-        <router-view class="h-full flex"></router-view>
+        <router-view class="h-full"></router-view>
         <Footer/>
 
         <div v-for="count in store.count" class="grid place-items-center">
