@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouterView, } from 'vue-router'
 import Home from './views/Home.vue'
 import About from './views/About.vue'
+import Blog from './views/Blog.vue'
+
 import PageNotFound from './views/PageNotFound.vue'
 
 import Auth from "./views/Auth.vue"
@@ -18,6 +20,11 @@ const routes = [
         path: "/about",
         name: "About",
         component: About
+    },
+    {
+        path: "/blog",
+        name: "Blog",
+        component: Blog
     },
     {
         path: "/login",
@@ -38,7 +45,6 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
-    routes
     routes: [
         ...routes,
         ...pages.default
@@ -46,3 +52,4 @@ const router = createRouter({
 })
 
 export default router
+
